@@ -17736,11 +17736,11 @@ lets_roll() {
      [[ -z "$NODEIP" ]] && fatal "$NODE doesn't resolve to an IP address" $ERR_DNSLOOKUP
      nodeip_to_proper_ip6
      reset_hostdepended_vars
-     determine_rdns                # Returns always zero or has already exited if fatal error occurred
-     stopwatch determine_rdns
+     #determine_rdns                # Returns always zero or has already exited if fatal error occurred
+     #stopwatch determine_rdns
 
-     ((SERVER_COUNTER++))
-     determine_service "$1"        # STARTTLS service? Other will be determined here too. Returns always 0 or has already exited if fatal error occurred
+     #((SERVER_COUNTER++))
+     #determine_service "$1"        # STARTTLS service? Other will be determined here too. Returns always 0 or has already exited if fatal error occurred
 
      # "secret" devel options --devel:
      $do_tls_sockets && [[ $TLS_LOW_BYTE -eq 22 ]] && { sslv2_sockets "" "true"; echo $? ; exit $ALLOK; }
@@ -17752,8 +17752,8 @@ lets_roll() {
      fileout_section_header $section_number false && ((section_number++))
      $do_protocols && {
           run_protocols; ret=$(($? + ret)); stopwatch run_protocols;
-          run_npn; ret=$(($? + ret)); stopwatch run_npn;
-          run_alpn; ret=$(($? + ret)); stopwatch run_alpn;
+          #run_npn; ret=$(($? + ret)); stopwatch run_npn;
+          #run_alpn; ret=$(($? + ret)); stopwatch run_alpn;
      }
      fileout_section_header $section_number true && ((section_number++))
      "$do_grease" && { run_grease; ret=$(($? + ret)); stopwatch run_grease; }
